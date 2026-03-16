@@ -1,7 +1,8 @@
-import cross from "./assets/cross.png";
-import not_tick from "./assets/not_tick.png";
-import tick from "./assets/tick.png";
-import "./Css/TodoItem.css";
+// TodoItem.jsx is in src/component/
+import cross from '../assets/cross.png';
+import tick from '../assets/tick.png';
+import not_tick from '../assets/not_tick.png';
+import './Css/TodoItem.css';
 const TodoItem = ({ no, text, display, setTodos }) => {
   const deleteTodo = (no) => {
     let data = JSON.parse(localStorage.getItem("todos"));
