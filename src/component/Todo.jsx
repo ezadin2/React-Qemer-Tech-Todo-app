@@ -10,27 +10,29 @@ const Todo = () => {
   const inputref = useRef(null);
 
   const addTodo = () => {
-   const newTodo = inputref.current.value;
+    const newTodo = inputref.current.value.trim();
+    if (!newTodo) return; // prevent empty todos
+
     setTodos([...todos, { no: count++, text: newTodo, display: "" }]);
     inputref.current.value = "";
-     localStorage.setItem("todos-count", count);
+    localStorage.setItem("todos-count", count);
   };
 
-   useEffect(() => {
-    const storedTodos = JSON.parse(localStorage.getItem("todos"));
-    count = localStorage.getItem("todos-count");
+  useEffect(() => {
+    // ✅ Fix first-load null issue
+    const storedTodos = JSON.parse(localStorage.getItem("todos")) || [];
+    count = parseInt(localStorage.getItem("todos-count") || "0", 10);
     setTodos(storedTodos);
-    
   }, []);
+
   useEffect(() => {
     setTimeout(() => {
-      console.log(todos);
       localStorage.setItem("todos", JSON.stringify(todos));
-    
     }, 100);
   }, [todos]);
 
-  const filteredTodos = todos.filter((todo) => {
+  // ✅ Always ensure todos is an array
+  const filteredTodos = (todos || []).filter((todo) => {
     if (filterType === "completed") return todo.display === "line-through";
     if (filterType === "pending") return todo.display === "";
     return true;
@@ -38,22 +40,16 @@ const Todo = () => {
 
   return (
     <div className="todo">
-
       <div className="todo-header">Todo List</div>
 
       <div className="todo-add">
-
         <input
           type="text"
           ref={inputref}
           className="todo-input"
           placeholder="Add a new task..."
         />
-
-        <button
-          onClick={addTodo}
-          className="todo-add-btn"
-        >
+        <button onClick={addTodo} className="todo-add-btn">
           Add
         </button>
 
@@ -66,7 +62,6 @@ const Todo = () => {
           <option value="completed">Completed</option>
           <option value="pending">Pending</option>
         </select>
-
       </div>
 
       <div className="todo-item">
@@ -80,9 +75,8 @@ const Todo = () => {
           />
         ))}
       </div>
-
     </div>
   );
 };
 
-export default Todo; 
+export default Todo;
