@@ -51,3 +51,24 @@
     font-size: 25px;
     cursor: pointer;
 }
+
+.todo-filter{
+  margin-left:15px;
+  padding:10px 14px;
+  border-radius:8px;
+  border:1px solid #ddd;
+  font-size:15px;
+  background:white;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.todo-filter:hover{
+  border-color:#ff6739;
+}
+
+.todo-filter:focus{
+  outline:none;
+  border-color:#ff6739;
+  box-shadow:0 0 4px rgba(255,103,57,0.5);
+}
