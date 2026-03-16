@@ -1,30 +1,55 @@
-
-.todo-items{
-    margin-top: 30px;
-    padding: 16px 0;
+.todo-items {
+  margin-top: 30px;
+  padding: 16px 0;
 }
 
-.todo-contianer{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-align: center;
+.todo-contianer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
 }
+
 .todo-contianer .todo-text {
-    font-size: 20px;
-    font-weight: 500;
-    color: #333;
-    text-align: left;
-   
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #333;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.todoitem-cross{
-    padding-right:20px;
-    cursor: pointer;
+.todoitem-cross {
+  padding-right: 20px;
+  cursor: pointer;
 }
-.line-through{
-    text-decoration: line-through solid #333;
+
+.line-through {
+  text-decoration: line-through solid #333;
+}
+
+/* --- Tablet & small screens (≤ 768px) --- */
+@media (max-width: 768px) {
+  .todo-contianer .todo-text {
+    font-size: 18px;
+  }
+}
+
+/* --- Mobile & extra small screens (≤ 480px) --- */
+@media (max-width: 480px) {
+  .todo-contianer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .todo-contianer .todo-text {
+    font-size: 16px;
+  }
+
+  .todoitem-cross {
+    padding-right: 0;
+    align-self: flex-end;
+  }
 }
